@@ -9,8 +9,9 @@ pipeline{
             stage('Upload to AWS') {
                 steps {
                     retry(3){
-                        withAWS(region:'us-west-2', credentials:'aws-static'){
-                        s3Upload(file:'index.html', bucket:'vivek.tech.jenkins', path:'')
+                       withAWS(region:'us-east-2',credentials:'AKIA2RYGZ3D3DITFVSNY') {
+                       s3Delete(bucket: 'jenkins-bucket5', path:'**/*')
+                       s3Upload(bucket: 'jenkins-bucket5', file:'index.html');
                     }                             
                 }
             }
